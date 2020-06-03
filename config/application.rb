@@ -34,6 +34,11 @@ module BaseAppRails6react
 
     # generator setup
     config.generators do |g|
+      g.test_framework  :rspec,
+                        fixtures: false,
+                        view_specs: false,
+                        helper_specs: false,
+                        routing_specs: false
       g.system_tests    nil
       g.helper          false
       g.stylesheets     false
