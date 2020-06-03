@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     get 'posts', to: "posts#index"
   end
 
-  match "*path", to: 'pages#index', via: :get
+  # match "*path", to: 'pages#index', via: :get
+  get "*path", to: 'pages#index', constraints: -> (req) do
+   !req.xhr? && req.format.html?
+  end
+  
   root "pages#index"
 end
