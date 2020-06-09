@@ -47,3 +47,4 @@ gem "react-rails", "~> 2.6"
 gem "foreman"
 
 gem "rspec-rails", "~> 4.0"
+gem 'devise', '~> 4.7', '>= 4.7.1'
