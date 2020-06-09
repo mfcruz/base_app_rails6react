@@ -32,9 +32,28 @@ class Api::V1::PostsController < ApplicationController
   end
   
   def update
+    if authorized?
+      respond_to do |format|
+        if @post.update(post_params)
+          format.json { render :show, status: :ok, location: api_v1_post_path(@post) }
+        else
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      handle_unauthorized
+    end
   end
   
   def destroy
+    if authorized?
+      @post.destroy
+      respond_to do |format|
+        format.json { head :no_content }
+      end
+    else
+      handle_unauthorized
+    end
   end
   
   private
